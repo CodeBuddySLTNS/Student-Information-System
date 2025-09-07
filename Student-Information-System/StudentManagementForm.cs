@@ -8,6 +8,9 @@ namespace Student_Information_System
     public class StudentManagementForm : Form
     {
         private DataGridView dgvStudents;
+        private Panel headerPanel;
+        private Label headerTitle;
+        private Panel contentPanel;
         private TextBox txtStudentCode;
         private TextBox txtFirstName;
         private TextBox txtMiddleName;
@@ -32,39 +35,75 @@ namespace Student_Information_System
         private void InitializeComponent()
         {
             Text = "Student Management";
-            Width = 1000;
-            Height = 650;
+            Width = 1100;
+            Height = 720;
             StartPosition = FormStartPosition.CenterParent;
+            BackColor = System.Drawing.Color.FromArgb(250, 252, 255);
+            Font = new System.Drawing.Font("Segoe UI", 10F);
+
+            headerPanel = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 80,
+                BackColor = System.Drawing.Color.FromArgb(30, 58, 138)
+            };
+            headerTitle = new Label
+            {
+                Text = "Manage Students",
+                AutoSize = false,
+                Left = 20,
+                Top = 18,
+                Width = 800,
+                Height = 44,
+                ForeColor = System.Drawing.Color.White,
+                Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold)
+            };
+            headerPanel.Controls.Add(headerTitle);
+
+            contentPanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                Padding = new Padding(16)
+            };
 
             dgvStudents = new DataGridView
             {
                 Dock = DockStyle.Top,
-                Height = 320,
+                Height = 360,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                BackgroundColor = System.Drawing.Color.White,
+                BorderStyle = BorderStyle.None,
+                EnableHeadersVisualStyles = false
             };
+            dgvStudents.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            dgvStudents.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            dgvStudents.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dgvStudents.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(244, 247, 254);
+            dgvStudents.RowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(191, 219, 254);
+            dgvStudents.RowsDefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             dgvStudents.SelectionChanged += DgvStudents_SelectionChanged;
 
             lblSearch = new Label
             {
                 Text = "Search:",
-                Top = 330,
+                Top = dgvStudents.Bottom + 10,
                 Left = 12,
-                Width = 60
+                Width = 70
             };
 
             txtSearch = new TextBox
             {
-                Top = 326,
-                Left = 80,
-                Width = 240
+                Top = dgvStudents.Bottom + 6,
+                Left = lblSearch.Right + 8,
+                Width = 300
             };
             txtSearch.TextChanged += TxtSearch_TextChanged;
 
             int baseLeft = 12;
-            int baseTop = 370;
+            int baseTop = 410;
             int labelWidth = 100;
             int inputWidth = 220;
             int rowGap = 38;
@@ -85,35 +124,42 @@ namespace Student_Information_System
             var lblPhone = new Label { Text = "Phone", Left = baseLeft + labelWidth + inputWidth + colGap + 60, Top = baseTop + rowGap, Width = labelWidth };
             txtPhone = new TextBox { Left = lblPhone.Right + 8, Top = baseTop + rowGap - 4, Width = inputWidth };
 
-            btnAdd = new Button { Text = "Add Student", Left = baseLeft, Top = baseTop + rowGap * 3 + 10, Width = 150, Height = 34 };
+            btnAdd = new Button { Text = "Add Student", Left = baseLeft, Top = baseTop + rowGap * 3 + 18, Width = 170, Height = 38, FlatStyle = FlatStyle.Flat, BackColor = System.Drawing.Color.FromArgb(16, 185, 129), ForeColor = System.Drawing.Color.White };
+            btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.Click += BtnAdd_Click;
 
-            btnUpdate = new Button { Text = "Update Student", Left = btnAdd.Right + 12, Top = btnAdd.Top, Width = 150, Height = 34, Enabled = false };
+            btnUpdate = new Button { Text = "Update Student", Left = btnAdd.Right + 12, Top = btnAdd.Top, Width = 170, Height = 38, Enabled = false, FlatStyle = FlatStyle.Flat, BackColor = System.Drawing.Color.FromArgb(59, 130, 246), ForeColor = System.Drawing.Color.White };
+            btnUpdate.FlatAppearance.BorderSize = 0;
             btnUpdate.Click += BtnUpdate_Click;
 
-            btnDelete = new Button { Text = "Delete Student", Left = btnUpdate.Right + 12, Top = btnAdd.Top, Width = 150, Height = 34, Enabled = false };
+            btnDelete = new Button { Text = "Delete Student", Left = btnUpdate.Right + 12, Top = btnAdd.Top, Width = 170, Height = 38, Enabled = false, FlatStyle = FlatStyle.Flat, BackColor = System.Drawing.Color.FromArgb(239, 68, 68), ForeColor = System.Drawing.Color.White };
+            btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.Click += BtnDelete_Click;
 
-            btnClear = new Button { Text = "Clear", Left = btnDelete.Right + 12, Top = btnAdd.Top, Width = 100, Height = 34 };
+            btnClear = new Button { Text = "Clear", Left = btnDelete.Right + 12, Top = btnAdd.Top, Width = 120, Height = 38, FlatStyle = FlatStyle.Flat, BackColor = System.Drawing.Color.FromArgb(107, 114, 128), ForeColor = System.Drawing.Color.White };
+            btnClear.FlatAppearance.BorderSize = 0;
             btnClear.Click += BtnClear_Click;
 
-            Controls.Add(dgvStudents);
-            Controls.Add(lblSearch);
-            Controls.Add(txtSearch);
-            Controls.Add(lblStudentCode);
-            Controls.Add(txtStudentCode);
-            Controls.Add(lblFirstName);
-            Controls.Add(txtFirstName);
-            Controls.Add(lblMiddleName);
-            Controls.Add(txtMiddleName);
-            Controls.Add(lblLastName);
-            Controls.Add(txtLastName);
-            Controls.Add(lblPhone);
-            Controls.Add(txtPhone);
-            Controls.Add(btnAdd);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnDelete);
-            Controls.Add(btnClear);
+            contentPanel.Controls.Add(dgvStudents);
+            contentPanel.Controls.Add(lblSearch);
+            contentPanel.Controls.Add(txtSearch);
+            contentPanel.Controls.Add(lblStudentCode);
+            contentPanel.Controls.Add(txtStudentCode);
+            contentPanel.Controls.Add(lblFirstName);
+            contentPanel.Controls.Add(txtFirstName);
+            contentPanel.Controls.Add(lblMiddleName);
+            contentPanel.Controls.Add(txtMiddleName);
+            contentPanel.Controls.Add(lblLastName);
+            contentPanel.Controls.Add(txtLastName);
+            contentPanel.Controls.Add(lblPhone);
+            contentPanel.Controls.Add(txtPhone);
+            contentPanel.Controls.Add(btnAdd);
+            contentPanel.Controls.Add(btnUpdate);
+            contentPanel.Controls.Add(btnDelete);
+            contentPanel.Controls.Add(btnClear);
+
+            Controls.Add(contentPanel);
+            Controls.Add(headerPanel);
         }
 
         private void StudentManagementForm_Load(object? sender, EventArgs e)
