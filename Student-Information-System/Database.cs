@@ -28,6 +28,65 @@ namespace Student_Information_System
             return reader.Read();
         }
 
+        public static int GetStudentCount()
+        {
+            using var conn = OpenConnection();
+            using var cmd = new MySqlCommand("SELECT COUNT(*) FROM students", conn);
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        public static DataTable GetStudents()
+        {
+            using var conn = OpenConnection();
+            using var cmd = new MySqlCommand(
+                "SELECT id, studentCode, firstName, middleName, lastName, phone FROM students ORDER BY id DESC",
+                conn
+            );
+            using var adapter = new MySqlDataAdapter(cmd);
+            var table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
+
+        public static int AddStudent(int studentCode, string firstName, string? middleName, string lastName, string? phone)
+        {
+            using var conn = OpenConnection();
+            using var cmd = new MySqlCommand(
+                "INSERT INTO students (studentCode, firstName, middleName, lastName, phone) VALUES (@code, @first, @middle, @last, @phone)",
+                conn
+            );
+            cmd.Parameters.AddWithValue("@code", studentCode);
+            cmd.Parameters.AddWithValue("@first", firstName);
+            cmd.Parameters.AddWithValue("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName);
+            cmd.Parameters.AddWithValue("@last", lastName);
+            cmd.Parameters.AddWithValue("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
+            return cmd.ExecuteNonQuery();
+        }
+
+        public static int UpdateStudent(int id, int studentCode, string firstName, string? middleName, string lastName, string? phone)
+        {
+            using var conn = OpenConnection();
+            using var cmd = new MySqlCommand(
+                "UPDATE students SET studentCode = @code, firstName = @first, middleName = @middle, lastName = @last, phone = @phone WHERE id = @id",
+                conn
+            );
+            cmd.Parameters.AddWithValue("@code", studentCode);
+            cmd.Parameters.AddWithValue("@first", firstName);
+            cmd.Parameters.AddWithValue("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName);
+            cmd.Parameters.AddWithValue("@last", lastName);
+            cmd.Parameters.AddWithValue("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
+            cmd.Parameters.AddWithValue("@id", id);
+            return cmd.ExecuteNonQuery();
+        }
+
+        public static int DeleteStudent(int id)
+        {
+            using var conn = OpenConnection();
+            using var cmd = new MySqlCommand("DELETE FROM students WHERE id = @id", conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            return cmd.ExecuteNonQuery();
+        }
+
         private static string ComputeMd5(string input)
         {
             using var md5 = MD5.Create();

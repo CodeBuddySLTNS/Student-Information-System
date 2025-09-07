@@ -2,6 +2,7 @@ namespace Student_Information_System
 {
     using System;
     using System.Data;
+    using System.ComponentModel;
     using System.Windows.Forms;
     using MySql.Data.MySqlClient;
 
@@ -164,23 +165,18 @@ namespace Student_Information_System
 
         private void StudentManagementForm_Load(object? sender, EventArgs e)
         {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
             ReloadStudents();
         }
 
         private void ReloadStudents()
         {
-            using var conn = Database.OpenConnection();
-            using var cmd = new MySqlCommand(
-                "SELECT id, studentCode, firstName, middleName, lastName, phone FROM students ORDER BY id DESC",
-                conn
-            );
-            using var adapter = new MySqlDataAdapter(cmd);
-            _studentsTable = new DataTable();
-            adapter.Fill(_studentsTable);
-
+            _studentsTable = Database.GetStudents();
             _bindingSource.DataSource = _studentsTable;
             dgvStudents.DataSource = _bindingSource;
-
             btnUpdate.Enabled = dgvStudents.SelectedRows.Count > 0;
             btnDelete.Enabled = dgvStudents.SelectedRows.Count > 0;
         }
@@ -236,18 +232,7 @@ namespace Student_Information_System
                 return;
             }
 
-            using var conn = Database.OpenConnection();
-            using var cmd = new MySqlCommand(
-                "INSERT INTO students (studentCode, firstName, middleName, lastName, phone) VALUES (@code, @first, @middle, @last, @phone)",
-                conn
-            );
-            cmd.Parameters.AddWithValue("@code", studentCode);
-            cmd.Parameters.AddWithValue("@first", firstName);
-            cmd.Parameters.AddWithValue("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName);
-            cmd.Parameters.AddWithValue("@last", lastName);
-            cmd.Parameters.AddWithValue("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
-
-            int affected = cmd.ExecuteNonQuery();
+            int affected = Database.AddStudent(studentCode, firstName, string.IsNullOrWhiteSpace(middleName) ? null : middleName, lastName, string.IsNullOrWhiteSpace(phone) ? null : phone);
             if (affected > 0)
             {
                 ReloadStudents();
@@ -270,19 +255,7 @@ namespace Student_Information_System
 
             int id = Convert.ToInt32(dgvStudents.SelectedRows[0].Cells["id"].Value);
 
-            using var conn = Database.OpenConnection();
-            using var cmd = new MySqlCommand(
-                "UPDATE students SET studentCode = @code, firstName = @first, middleName = @middle, lastName = @last, phone = @phone WHERE id = @id",
-                conn
-            );
-            cmd.Parameters.AddWithValue("@code", studentCode);
-            cmd.Parameters.AddWithValue("@first", firstName);
-            cmd.Parameters.AddWithValue("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName);
-            cmd.Parameters.AddWithValue("@last", lastName);
-            cmd.Parameters.AddWithValue("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
-            cmd.Parameters.AddWithValue("@id", id);
-
-            int affected = cmd.ExecuteNonQuery();
+            int affected = Database.UpdateStudent(id, studentCode, firstName, string.IsNullOrWhiteSpace(middleName) ? null : middleName, lastName, string.IsNullOrWhiteSpace(phone) ? null : phone);
             if (affected > 0)
             {
                 ReloadStudents();
@@ -305,11 +278,7 @@ namespace Student_Information_System
                 return;
             }
 
-            using var conn = Database.OpenConnection();
-            using var cmd = new MySqlCommand("DELETE FROM students WHERE id = @id", conn);
-            cmd.Parameters.AddWithValue("@id", id);
-
-            int affected = cmd.ExecuteNonQuery();
+            int affected = Database.DeleteStudent(id);
             if (affected > 0)
             {
                 ReloadStudents();

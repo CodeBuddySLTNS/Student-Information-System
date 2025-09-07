@@ -2,6 +2,7 @@ namespace Student_Information_System
 {
     using System;
     using System.Windows.Forms;
+    using System.ComponentModel;
 
     public class MainForm : Form
     {
@@ -108,6 +109,10 @@ namespace Student_Information_System
 
         private void MainForm_Load(object? sender, EventArgs e)
         {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
             LoadDashboardStats();
         }
 
@@ -115,9 +120,7 @@ namespace Student_Information_System
         {
             try
             {
-                using var conn = Database.OpenConnection();
-                using var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT COUNT(*) FROM students", conn);
-                var count = Convert.ToInt32(cmd.ExecuteScalar());
+                var count = Database.GetStudentCount();
                 lblStudentsCount.Text = $"Students: {count}";
                 lblDbStatus.Text = "DB: Connected";
                 lblDbStatus.ForeColor = System.Drawing.Color.ForestGreen;
