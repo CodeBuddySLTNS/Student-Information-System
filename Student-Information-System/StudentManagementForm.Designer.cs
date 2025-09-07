@@ -6,8 +6,6 @@ namespace Student_Information_System
     public partial class StudentManagementForm
     {
         private DataGridView dgvStudents;
-        private Panel headerPanel;
-        private Label headerTitle;
         private Panel contentPanel;
         private Panel searchPanel;
         private TextBox txtStudentCode;
@@ -26,37 +24,16 @@ namespace Student_Information_System
         {
             this.SuspendLayout();
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 720);
+            this.ClientSize = new System.Drawing.Size(1000, 650);
             this.StartPosition = FormStartPosition.CenterParent;
             this.Text = "Student Management";
-            this.BackColor = Color.FromArgb(250, 252, 255);
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Font = new Font("Segoe UI", 10F);
-
-            headerPanel = new Panel
-            {
-                Dock = DockStyle.Top,
-                Height = 80,
-                BackColor = Color.FromArgb(30, 58, 138)
-            };
-            headerTitle = new Label
-            {
-                Text = "Manage Students",
-                AutoSize = false,
-                Left = 20,
-                Top = 18,
-                Width = 800,
-                Height = 44,
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 20F, FontStyle.Bold)
-            };
-            headerPanel.SuspendLayout();
-            headerPanel.Controls.Add(headerTitle);
-            headerPanel.ResumeLayout(false);
 
             contentPanel = new Panel
             {
                 Dock = DockStyle.Fill,
-                Padding = new Padding(16)
+                Padding = new Padding(12)
             };
 
             dgvStudents = new DataGridView
@@ -82,7 +59,7 @@ namespace Student_Information_System
             {
                 Dock = DockStyle.Top,
                 Height = 40,
-                Padding = new Padding(12, 8, 12, 8)
+                Padding = new Padding(0, 8, 0, 8)
             };
             lblSearch = new Label
             {
@@ -93,16 +70,15 @@ namespace Student_Information_System
             };
             txtSearch = new TextBox
             {
-                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
-                Left = 90,
+                Left = 70,
                 Top = 8,
-                Width = 320
+                Width = 260
             };
             searchPanel.Controls.Add(lblSearch);
             searchPanel.Controls.Add(txtSearch);
 
             int baseLeft = 12;
-            int baseTop = 410;
+            int baseTop = 370;
             int labelWidth = 100;
             int inputWidth = 220;
             int rowGap = 38;
@@ -136,8 +112,8 @@ namespace Student_Information_System
             btnClear.FlatAppearance.BorderSize = 0;
 
             contentPanel.SuspendLayout();
-            contentPanel.Controls.Add(searchPanel);
             contentPanel.Controls.Add(dgvStudents);
+            contentPanel.Controls.Add(searchPanel);
             contentPanel.Controls.Add(lblStudentCode);
             contentPanel.Controls.Add(txtStudentCode);
             contentPanel.Controls.Add(lblFirstName);
@@ -156,7 +132,6 @@ namespace Student_Information_System
             contentPanel.ResumeLayout(false);
             contentPanel.PerformLayout();
 
-            this.Controls.Add(headerPanel);
             this.Controls.Add(contentPanel);
 
             this.ResumeLayout(false);

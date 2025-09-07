@@ -25,19 +25,6 @@ namespace Student_Information_System
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
-                var dt = new DataTable();
-                dt.Columns.Add("id", typeof(int));
-                dt.Columns.Add("studentCode", typeof(int));
-                dt.Columns.Add("firstName", typeof(string));
-                dt.Columns.Add("middleName", typeof(string));
-                dt.Columns.Add("lastName", typeof(string));
-                dt.Columns.Add("phone", typeof(string));
-                dt.Rows.Add(1, 1001, "Jane", "A.", "Doe", "09123456789");
-                dt.Rows.Add(2, 1002, "John", "B.", "Smith", "09987654321");
-                _studentsTable = dt;
-                _bindingSource.DataSource = _studentsTable;
-                dgvStudents.DataSource = _bindingSource;
-                dgvStudents.Height = 360;
                 return;
             }
             ReloadStudents();
