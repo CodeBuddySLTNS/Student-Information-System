@@ -12,6 +12,11 @@ namespace Student_Information_System
         {
             InitializeComponent();
             Load += MainForm_Load;
+            uiTimer.Tick += (s, e) => { clockLabel.Text = DateTime.Now.ToString("f"); };
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                uiTimer.Start();
+            }
         }
 
         

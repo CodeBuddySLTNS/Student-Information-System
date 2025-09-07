@@ -87,9 +87,8 @@ namespace Student_Information_System
             headerPanel.Controls.Add(lblDbStatus);
             Controls.Add(headerPanel);
 
-            uiTimer = new Timer { Interval = 1000 };
-            uiTimer.Tick += (s, e) => { clockLabel.Text = DateTime.Now.ToString("f"); };
-            uiTimer.Start();
+            uiTimer = new Timer();
+            uiTimer.Interval = 1000;
         }
     }
 }
