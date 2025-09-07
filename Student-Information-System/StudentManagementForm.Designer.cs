@@ -61,7 +61,8 @@ namespace Student_Information_System
 
             dgvStudents = new DataGridView
             {
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.Top,
+                Height = 360,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
@@ -80,8 +81,8 @@ namespace Student_Information_System
             searchPanel = new Panel
             {
                 Dock = DockStyle.Top,
-                Height = 48,
-                Padding = new Padding(0, 8, 0, 8)
+                Height = 40,
+                Padding = new Padding(12, 8, 12, 8)
             };
             lblSearch = new Label
             {
@@ -92,6 +93,7 @@ namespace Student_Information_System
             };
             txtSearch = new TextBox
             {
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
                 Left = 90,
                 Top = 8,
                 Width = 320
@@ -134,8 +136,8 @@ namespace Student_Information_System
             btnClear.FlatAppearance.BorderSize = 0;
 
             contentPanel.SuspendLayout();
-            contentPanel.Controls.Add(searchPanel);
             contentPanel.Controls.Add(dgvStudents);
+            contentPanel.Controls.Add(searchPanel);
             contentPanel.Controls.Add(lblStudentCode);
             contentPanel.Controls.Add(txtStudentCode);
             contentPanel.Controls.Add(lblFirstName);
@@ -154,8 +156,8 @@ namespace Student_Information_System
             contentPanel.ResumeLayout(false);
             contentPanel.PerformLayout();
 
-            this.Controls.Add(headerPanel);
             this.Controls.Add(contentPanel);
+            this.Controls.Add(headerPanel);
 
             this.ResumeLayout(false);
         }
