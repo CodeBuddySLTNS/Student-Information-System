@@ -37,6 +37,7 @@ namespace Student_Information_System
                 _studentsTable = dt;
                 _bindingSource.DataSource = _studentsTable;
                 dgvStudents.DataSource = _bindingSource;
+                dgvStudents.Height = 360;
                 return;
             }
             ReloadStudents();

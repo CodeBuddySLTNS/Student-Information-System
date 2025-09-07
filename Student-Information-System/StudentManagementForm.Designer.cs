@@ -61,7 +61,8 @@ namespace Student_Information_System
 
             dgvStudents = new DataGridView
             {
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.Top,
+                Height = 360,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
