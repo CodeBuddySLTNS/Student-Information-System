@@ -23,10 +23,7 @@ namespace Student_Information_System
 
         private void StudentManagementForm_Load(object? sender, EventArgs e)
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-            {
-                return;
-            }
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
             ReloadStudents();
         }
 

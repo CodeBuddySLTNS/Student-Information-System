@@ -39,21 +39,12 @@ namespace Student_Information_System
             dgvStudents = new DataGridView
             {
                 Dock = DockStyle.Top,
-                Height = 360,
+                Height = 320,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
-                EnableHeadersVisualStyles = false
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvStudents.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 64, 175);
-            dgvStudents.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvStudents.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dgvStudents.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(244, 247, 254);
-            dgvStudents.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(191, 219, 254);
-            dgvStudents.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
 
             searchPanel = new Panel
             {
@@ -99,17 +90,13 @@ namespace Student_Information_System
             var lblPhone = new Label { Text = "Phone", Left = baseLeft + labelWidth + inputWidth + colGap + 60, Top = baseTop + rowGap, Width = labelWidth };
             txtPhone = new TextBox { Left = lblPhone.Right + 8, Top = baseTop + rowGap - 4, Width = inputWidth };
 
-            btnAdd = new Button { Text = "Add Student", Left = baseLeft, Top = baseTop + rowGap * 3 + 18, Width = 170, Height = 38, FlatStyle = FlatStyle.Flat, BackColor = Color.FromArgb(16, 185, 129), ForeColor = Color.White };
-            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd = new Button { Text = "Add Student", Left = baseLeft, Top = baseTop + rowGap * 3 + 18, Width = 150, Height = 34 };
 
-            btnUpdate = new Button { Text = "Update Student", Left = btnAdd.Right + 12, Top = btnAdd.Top, Width = 170, Height = 38, Enabled = false, FlatStyle = FlatStyle.Flat, BackColor = Color.FromArgb(59, 130, 246), ForeColor = Color.White };
-            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate = new Button { Text = "Update Student", Left = btnAdd.Right + 12, Top = btnAdd.Top, Width = 150, Height = 34, Enabled = false };
 
-            btnDelete = new Button { Text = "Delete Student", Left = btnUpdate.Right + 12, Top = btnAdd.Top, Width = 170, Height = 38, Enabled = false, FlatStyle = FlatStyle.Flat, BackColor = Color.FromArgb(239, 68, 68), ForeColor = Color.White };
-            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete = new Button { Text = "Delete Student", Left = btnUpdate.Right + 12, Top = btnAdd.Top, Width = 150, Height = 34, Enabled = false };
 
-            btnClear = new Button { Text = "Clear", Left = btnDelete.Right + 12, Top = btnAdd.Top, Width = 120, Height = 38, FlatStyle = FlatStyle.Flat, BackColor = Color.FromArgb(107, 114, 128), ForeColor = Color.White };
-            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear = new Button { Text = "Clear", Left = btnDelete.Right + 12, Top = btnAdd.Top, Width = 100, Height = 34 };
 
             contentPanel.SuspendLayout();
             contentPanel.Controls.Add(dgvStudents);
