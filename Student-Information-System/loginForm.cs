@@ -5,7 +5,7 @@ namespace Student_Information_System
         string username;
         string password;
 
-        dashboardForm dashboard = new dashboardForm();
+        MainForm dashboard = new MainForm();
 
         public loginForm()
         {
