@@ -24,12 +24,13 @@ namespace Student_Information_System
 
         private void InitializeComponent()
         {
-            Text = "Student Management";
-            Width = 1100;
-            Height = 720;
-            StartPosition = FormStartPosition.CenterParent;
-            BackColor = Color.FromArgb(250, 252, 255);
-            Font = new Font("Segoe UI", 10F);
+            this.SuspendLayout();
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1100, 720);
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.Text = "Student Management";
+            this.BackColor = Color.FromArgb(250, 252, 255);
+            this.Font = new Font("Segoe UI", 10F);
 
             headerPanel = new Panel
             {
@@ -48,7 +49,9 @@ namespace Student_Information_System
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 20F, FontStyle.Bold)
             };
+            headerPanel.SuspendLayout();
             headerPanel.Controls.Add(headerTitle);
+            headerPanel.ResumeLayout(false);
 
             contentPanel = new Panel
             {
@@ -131,6 +134,7 @@ namespace Student_Information_System
             btnClear = new Button { Text = "Clear", Left = btnDelete.Right + 12, Top = btnAdd.Top, Width = 120, Height = 38, FlatStyle = FlatStyle.Flat, BackColor = Color.FromArgb(107, 114, 128), ForeColor = Color.White };
             btnClear.FlatAppearance.BorderSize = 0;
 
+            contentPanel.SuspendLayout();
             contentPanel.Controls.Add(dgvStudents);
             contentPanel.Controls.Add(searchPanel);
             contentPanel.Controls.Add(lblStudentCode);
@@ -148,8 +152,13 @@ namespace Student_Information_System
             contentPanel.Controls.Add(btnDelete);
             contentPanel.Controls.Add(btnClear);
 
-            Controls.Add(contentPanel);
-            Controls.Add(headerPanel);
+            contentPanel.ResumeLayout(false);
+            contentPanel.PerformLayout();
+
+            this.Controls.Add(contentPanel);
+            this.Controls.Add(headerPanel);
+
+            this.ResumeLayout(false);
         }
     }
 }
