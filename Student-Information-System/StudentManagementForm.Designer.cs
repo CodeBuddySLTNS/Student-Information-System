@@ -61,8 +61,7 @@ namespace Student_Information_System
 
             dgvStudents = new DataGridView
             {
-                Dock = DockStyle.Top,
-                Height = 360,
+                Dock = DockStyle.Fill,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
@@ -136,8 +135,8 @@ namespace Student_Information_System
             btnClear.FlatAppearance.BorderSize = 0;
 
             contentPanel.SuspendLayout();
-            contentPanel.Controls.Add(dgvStudents);
             contentPanel.Controls.Add(searchPanel);
+            contentPanel.Controls.Add(dgvStudents);
             contentPanel.Controls.Add(lblStudentCode);
             contentPanel.Controls.Add(txtStudentCode);
             contentPanel.Controls.Add(lblFirstName);
@@ -156,8 +155,8 @@ namespace Student_Information_System
             contentPanel.ResumeLayout(false);
             contentPanel.PerformLayout();
 
-            this.Controls.Add(contentPanel);
             this.Controls.Add(headerPanel);
+            this.Controls.Add(contentPanel);
 
             this.ResumeLayout(false);
         }

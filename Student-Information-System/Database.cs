@@ -1,13 +1,14 @@
 namespace Student_Information_System
 {
     using MySql.Data.MySqlClient;
+    using System.Data;
     using System.Security.Cryptography;
     using System.Text;
 
     public static class Database
     {
         private static readonly string _connectionString =
-            "server=localhost;port=3306;database=student_information_system;user id=root;password=;SslMode=none;";
+            "server=localhost;port=3306;database=infosys;user id=root;password=;SslMode=none;";
 
         public static MySqlConnection OpenConnection()
         {
