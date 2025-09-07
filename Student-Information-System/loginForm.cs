@@ -25,8 +25,6 @@ namespace Student_Information_System
         {
             username = txtUsername.Text;
             password = txtPassword.Text;
-            string name = "admin";
-            string pass = "admin";
 
             if (username == "" || password == "")
             {
@@ -45,16 +43,24 @@ namespace Student_Information_System
             }
             else
             {
-                if (username == name && password == pass)
+                try
                 {
-                    MessageBox.Show("You are now logged in.", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    dashboard.ShowDialog();
+                    bool isValid = Database.ValidateUserCredentials(username, password);
+                    if (isValid)
+                    {
+                        MessageBox.Show("You are now logged in.", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        dashboard.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect credentials.", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Incorrect credentials.", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
