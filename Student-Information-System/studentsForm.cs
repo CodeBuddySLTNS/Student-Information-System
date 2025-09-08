@@ -46,6 +46,28 @@ namespace Student_Information_System
             dataGridView1.AllowUserToDeleteRows = false;
         }
 
+        private void SetInputsEnabled(bool enabled)
+        {
+            studentCodeTxt.Enabled = enabled;
+            firstNameTxt.Enabled = enabled;
+            middleNameTxt.Enabled = enabled;
+            lastNameTxt.Enabled = enabled;
+            phoneTxt.Enabled = enabled;
+        }
+
+        private void SetActionState(bool inAction)
+        {
+            clearBtn.Visible = !inAction;
+            cancelBtn.Visible = inAction;
+            SetInputsEnabled(inAction);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            SetActionState(false);
+        }
+
         private void addStudentBtn_Click(object sender, EventArgs e)
         {
             if (action == "")
@@ -57,6 +79,7 @@ namespace Student_Information_System
                 editStudentBtn.BackColor = Color.Silver;
                 deleteStudentBtn.BackColor = Color.Silver;
                 ClearFields();
+                SetActionState(true);
             }
             else
             {
@@ -77,6 +100,7 @@ namespace Student_Information_System
                             LoadStudentData();
                             ResetButtons();
                             ClearFields();
+                            SetActionState(false);
                         }
                         else
                         {
@@ -107,6 +131,7 @@ namespace Student_Information_System
                 addStudentBtn.BackColor = Color.Silver;
                 editStudentBtn.BackColor = Color.LightGreen;
                 deleteStudentBtn.BackColor = Color.Silver;
+                SetActionState(true);
             }
             else
             {
@@ -127,6 +152,7 @@ namespace Student_Information_System
                             LoadStudentData();
                             ResetButtons();
                             ClearFields();
+                            SetActionState(false);
                         }
                         else
                         {
@@ -166,6 +192,7 @@ namespace Student_Information_System
                         LoadStudentData();
                         ClearFields();
                         selectedStudentId = -1;
+                        SetActionState(false);
                     }
                     else
                     {
@@ -183,6 +210,7 @@ namespace Student_Information_System
         {
             ResetButtons();
             ClearFields();
+            SetActionState(false);
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
