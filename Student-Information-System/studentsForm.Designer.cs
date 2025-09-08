@@ -274,18 +274,18 @@
             // searchTxt
             // 
             searchTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            searchTxt.Location = new Point(6, 30);
+            searchTxt.Location = new Point(9, 29);
             searchTxt.Name = "searchTxt";
-            searchTxt.Size = new Size(1456, 23);
+            searchTxt.Size = new Size(816, 23);
             searchTxt.TabIndex = 1;
             searchTxt.TextChanged += searchTxt_TextChanged;
             // 
             // searchLabel
             // 
             searchLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            searchLabel.Location = new Point(6, 10);
+            searchLabel.Location = new Point(9, 12);
             searchLabel.Name = "searchLabel";
-            searchLabel.Size = new Size(1456, 23);
+            searchLabel.Size = new Size(816, 23);
             searchLabel.TabIndex = 0;
             searchLabel.Text = "Search by Student Code or Name:";
             // 
@@ -300,6 +300,7 @@
             MinimumSize = new Size(756, 588);
             Name = "studentsForm";
             Text = "Student Management";
+            WindowState = FormWindowState.Maximized;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

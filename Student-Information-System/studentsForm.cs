@@ -44,6 +44,9 @@ namespace Student_Information_System
             dataGridView1.ReadOnly = true;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+
+            // Make columns fill available width
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void SetInputsEnabled(bool enabled)
