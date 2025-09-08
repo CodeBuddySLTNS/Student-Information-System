@@ -23,8 +23,7 @@ namespace Student_Information_System
 
         private void StudentsMenuItem_Click(object? sender, EventArgs e)
         {
-            using var form = new StudentManagementForm();
-            form.ShowDialog(this);
+            
             LoadDashboardStats();
         }
 
