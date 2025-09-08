@@ -6,7 +6,7 @@ namespace Student_Information_System
 
     public partial class MainForm : Form
     {
-        
+        studentsForm studentForm = new studentsForm();
 
         public MainForm()
         {
@@ -23,7 +23,7 @@ namespace Student_Information_System
 
         private void StudentsMenuItem_Click(object? sender, EventArgs e)
         {
-            
+            studentForm.ShowDialog();
             LoadDashboardStats();
         }
 
