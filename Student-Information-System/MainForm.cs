@@ -7,7 +7,7 @@ namespace Student_Information_System
     public partial class MainForm : Form
     {
         studentsForm studentForm = new studentsForm();
-
+        coursesForm coursesForm = new coursesForm();
         public MainForm()
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace Student_Information_System
             }
         }
 
-        
+
 
         private void StudentsMenuItem_Click(object? sender, EventArgs e)
         {
@@ -53,6 +53,11 @@ namespace Student_Information_System
                 lblDbStatus.ForeColor = System.Drawing.Color.Firebrick;
                 statusLabel.Text = $"Database error: {ex.Message}";
             }
+        }
+
+        private void couToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            coursesForm.ShowDialog();
         }
     }
 }

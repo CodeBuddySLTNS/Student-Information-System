@@ -17,6 +17,40 @@ namespace Student_Information_System
             return connection;
         }
 
+        public static DataTable ExecuteQuery(string sql, MySqlParameter[] parameters)
+        {
+          
+                using var conn = OpenConnection();
+                using var cmd = new MySqlCommand(sql, conn);
+
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+
+                using var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                adapter.Fill(table);
+                return table;
+        }
+
+        public static int ExecuteNonQuery(string sql, MySqlParameter[] parameters)
+        {
+            using var conn = OpenConnection();
+            using var cmd = new MySqlCommand(sql, conn);
+
+            if (parameters != null)
+            {
+                cmd.Parameters.AddRange(parameters);
+            }
+
+            return cmd.ExecuteNonQuery();
+        }
+
+        //
+        // User CRUD operations
+        //
+
         public static bool ValidateUserCredentials(string username, string password)
         {
             using var connection = OpenConnection();
@@ -38,46 +72,38 @@ namespace Student_Information_System
 
         public static DataTable GetStudents()
         {
-            using var conn = OpenConnection();
-            using var cmd = new MySqlCommand(
-                "SELECT id, studentCode, firstName, middleName, lastName, phone FROM students ORDER BY id DESC",
-                conn
-            );
-            using var adapter = new MySqlDataAdapter(cmd);
-            var table = new DataTable();
-            adapter.Fill(table);
-            return table;
+            return ExecuteQuery("SELECT id, studentCode, firstName, middleName, lastName, phone FROM students ORDER BY id DESC", []);
         }
 
         public static int AddStudent(int studentCode, string firstName, string? middleName, string lastName, string? phone)
         {
-            using var conn = OpenConnection();
-            using var cmd = new MySqlCommand(
+            return ExecuteNonQuery(
                 "INSERT INTO students (studentCode, firstName, middleName, lastName, phone) VALUES (@code, @first, @middle, @last, @phone)",
-                conn
+                new MySqlParameter[]
+                {
+                    new MySqlParameter("@code", studentCode),
+                    new MySqlParameter("@first", firstName),
+                    new MySqlParameter("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName),
+                    new MySqlParameter("@last", lastName),
+                    new MySqlParameter("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone)
+                }
             );
-            cmd.Parameters.AddWithValue("@code", studentCode);
-            cmd.Parameters.AddWithValue("@first", firstName);
-            cmd.Parameters.AddWithValue("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName);
-            cmd.Parameters.AddWithValue("@last", lastName);
-            cmd.Parameters.AddWithValue("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
-            return cmd.ExecuteNonQuery();
         }
 
         public static int UpdateStudent(int id, int studentCode, string firstName, string? middleName, string lastName, string? phone)
         {
-            using var conn = OpenConnection();
-            using var cmd = new MySqlCommand(
+           return ExecuteNonQuery(
                 "UPDATE students SET studentCode = @code, firstName = @first, middleName = @middle, lastName = @last, phone = @phone WHERE id = @id",
-                conn
+                new MySqlParameter[]
+                {
+                    new MySqlParameter("@id", id),
+                    new MySqlParameter("@code", studentCode),
+                    new MySqlParameter("@first", firstName),
+                    new MySqlParameter("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName),
+                    new MySqlParameter("@last", lastName),
+                    new MySqlParameter("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone)
+                }
             );
-            cmd.Parameters.AddWithValue("@code", studentCode);
-            cmd.Parameters.AddWithValue("@first", firstName);
-            cmd.Parameters.AddWithValue("@middle", string.IsNullOrWhiteSpace(middleName) ? (object)DBNull.Value : middleName);
-            cmd.Parameters.AddWithValue("@last", lastName);
-            cmd.Parameters.AddWithValue("@phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
-            cmd.Parameters.AddWithValue("@id", id);
-            return cmd.ExecuteNonQuery();
         }
 
         public static int DeleteStudent(int id)
@@ -99,6 +125,15 @@ namespace Student_Information_System
                 builder.Append(hash[i].ToString("x2"));
             }
             return builder.ToString();
+        }
+        
+        //
+        // Courses CRUD operations
+        //
+
+        public static DataTable GetCourses()
+        {
+            return ExecuteQuery("SELECT id, courseCode, courseName from courses ORDER BY id DESC", []);
         }
     }
 }

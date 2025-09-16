@@ -32,6 +32,7 @@ namespace Student_Information_System
             lblDbStatus = new Label();
             uiTimer = new Timer(components);
             pictureBox1 = new PictureBox();
+            couToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             headerPanel.SuspendLayout();
@@ -40,7 +41,7 @@ namespace Student_Information_System
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { studentsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { studentsMenuItem, couToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(900, 24);
@@ -141,6 +142,13 @@ namespace Student_Information_System
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
+            // couToolStripMenuItem
+            // 
+            couToolStripMenuItem.Name = "couToolStripMenuItem";
+            couToolStripMenuItem.Size = new Size(61, 20);
+            couToolStripMenuItem.Text = "Courses";
+            couToolStripMenuItem.Click += couToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -167,6 +175,7 @@ namespace Student_Information_System
         }
         private System.ComponentModel.IContainer components;
         private PictureBox pictureBox1;
+        private ToolStripMenuItem couToolStripMenuItem;
     }
 }
 
