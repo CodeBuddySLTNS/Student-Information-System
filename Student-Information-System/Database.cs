@@ -133,7 +133,74 @@ namespace Student_Information_System
 
         public static DataTable GetCourses()
         {
-            return ExecuteQuery("SELECT id, courseCode, courseName from courses ORDER BY id DESC", []);
+            return ExecuteQuery("SELECT * from courses ORDER BY id DESC", []);
+        }
+
+        public static int AddCourse(string courseCode, string courseName, int units)
+        {
+            return ExecuteNonQuery(
+                "INSERT INTO courses (courseCode, courseName, units) VALUES (@courseCode, @courseName, @units)", new MySqlParameter[]
+                {
+                    new MySqlParameter("@courseCode", courseCode),
+                    new MySqlParameter("@courseName", courseName),
+                    new MySqlParameter("@units", units)
+                });
+        }
+
+        public static int UpdateCourse(int id, string courseCode, string courseName, int units)
+        {
+            return ExecuteNonQuery(
+                "UPDATE courses SET courseCode = @courseCode, courseName = @courseName, units = @units WHERE id = @id", new MySqlParameter[]
+                {
+                    new MySqlParameter("@courseCode", courseCode),
+                    new MySqlParameter("@courseName", courseName),
+                    new MySqlParameter("@units", units),
+                    new MySqlParameter("@id", id)
+                });
+        }
+
+        public static int DeleteCourse(int id)
+        {
+            return ExecuteNonQuery(
+                "DELETE FROM courses WHERE id = @id", new MySqlParameter[]
+                {
+                    new MySqlParameter("@id", id)
+                });
+        }
+
+
+        //
+        // SchoolYear CRUD operations
+        //
+
+        public static DataTable GetSchoolYears()
+        {
+            return ExecuteQuery("SELECT * FROM schoolYears", []);
+        }
+
+        public static int AddSchoolYear(string name)
+        {
+            return ExecuteNonQuery("INSERT INTO schoolYears (name) VALUES (@name)", new MySqlParameter[]
+            {
+                new MySqlParameter("@name", name)
+            });
+        }
+
+        public static int UpdateSchoolYear(int id, string name)
+        {
+            return ExecuteNonQuery("UPDATE schoolYears SET name = @name WHERE id = @id", new MySqlParameter[]
+            {
+                new MySqlParameter("@name", name),
+                new MySqlParameter("@id", id)
+            });
+        }
+
+        public static int DeleteSchoolYear(string id)
+        {
+            return ExecuteNonQuery("DELETE FROM schoolYears WHERE id = @id", new MySqlParameter[]
+            {
+                new MySqlParameter("@id", id)
+            });
         }
     }
 }
