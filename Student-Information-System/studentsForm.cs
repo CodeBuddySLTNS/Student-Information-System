@@ -324,7 +324,7 @@ namespace Student_Information_System
             deleteStudentBtn.Enabled = true;
 
             addStudentBtn.BackColor = Color.LightGreen;
-            editStudentBtn.BackColor = Color.Blue;
+            editStudentBtn.BackColor = Color.PowderBlue;
             deleteStudentBtn.BackColor = Color.LightCoral;
         }
     }

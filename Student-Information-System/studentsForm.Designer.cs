@@ -177,7 +177,7 @@
             // clearBtn
             // 
             clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            clearBtn.BackColor = Color.Orange;
+            clearBtn.BackColor = Color.Silver;
             clearBtn.Location = new Point(6, 125);
             clearBtn.Name = "clearBtn";
             clearBtn.Size = new Size(290, 34);
@@ -213,7 +213,7 @@
             // editStudentBtn
             // 
             editStudentBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            editStudentBtn.BackColor = Color.Blue;
+            editStudentBtn.BackColor = Color.PowderBlue;
             editStudentBtn.Location = new Point(6, 51);
             editStudentBtn.Name = "editStudentBtn";
             editStudentBtn.Size = new Size(290, 34);
