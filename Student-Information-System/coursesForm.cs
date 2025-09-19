@@ -14,7 +14,7 @@ namespace Student_Information_System
     {
         private string action = "";
         private DataTable originalData;
-        private int selectedStudentId = -1;
+        private int selectedId = -1;
 
         public coursesForm()
         {
@@ -27,7 +27,7 @@ namespace Student_Information_System
         {
             try
             {
-                originalData = Database.GetStudents();
+                originalData = Database.GetCourses();
                 dataGridView1.DataSource = originalData;
             }
             catch (Exception ex)
@@ -51,11 +51,9 @@ namespace Student_Information_System
 
         private void SetInputsEnabled(bool enabled)
         {
-            studentCodeTxt.Enabled = enabled;
-            firstNameTxt.Enabled = enabled;
-            middleNameTxt.Enabled = enabled;
-            lastNameTxt.Enabled = enabled;
-            phoneTxt.Enabled = enabled;
+            courseCodeTxt.Enabled = enabled;
+            courseNameTxt.Enabled = enabled;
+            unitsTxt.Enabled = enabled;
         }
 
         private void SetActionState(bool inAction)
@@ -90,16 +88,14 @@ namespace Student_Information_System
                 {
                     try
                     {
-                        int studentCode = int.Parse(studentCodeTxt.Text);
-                        string firstName = firstNameTxt.Text.Trim();
-                        string middleName = string.IsNullOrWhiteSpace(middleNameTxt.Text) ? null : middleNameTxt.Text.Trim();
-                        string lastName = lastNameTxt.Text.Trim();
-                        string phone = string.IsNullOrWhiteSpace(phoneTxt.Text) ? null : phoneTxt.Text.Trim();
+                        string courseCode = courseCodeTxt.Text.Trim();
+                        string courseName = courseNameTxt.Text.Trim();
+                        int units = int.Parse(unitsTxt.Text);
 
-                        int result = Database.AddStudent(studentCode, firstName, middleName, lastName, phone);
+                        int result = Database.AddCourse(courseCode, courseName, units);
                         if (result > 0)
                         {
-                            MessageBox.Show("Student added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Course added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadStudentData();
                             ResetButtons();
                             ClearFields();
@@ -107,12 +103,12 @@ namespace Student_Information_System
                         }
                         else
                         {
-                            MessageBox.Show("Failed to add student.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Failed to add course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error adding student: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error adding course: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -122,9 +118,9 @@ namespace Student_Information_System
         {
             if (action == "")
             {
-                if (selectedStudentId == -1)
+                if (selectedId == -1)
                 {
-                    MessageBox.Show("Please select a student to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please select a course to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 action = "Edit";
@@ -142,16 +138,14 @@ namespace Student_Information_System
                 {
                     try
                     {
-                        int studentCode = int.Parse(studentCodeTxt.Text);
-                        string firstName = firstNameTxt.Text.Trim();
-                        string middleName = string.IsNullOrWhiteSpace(middleNameTxt.Text) ? null : middleNameTxt.Text.Trim();
-                        string lastName = lastNameTxt.Text.Trim();
-                        string phone = string.IsNullOrWhiteSpace(phoneTxt.Text) ? null : phoneTxt.Text.Trim();
+                        string courseCode = courseCodeTxt.Text.Trim();
+                        string courseName = courseNameTxt.Text.Trim();
+                        int units = int.Parse(unitsTxt.Text);
 
-                        int result = Database.UpdateStudent(selectedStudentId, studentCode, firstName, middleName, lastName, phone);
+                        int result = Database.UpdateCourse(selectedId, courseCode, courseName, units);
                         if (result > 0)
                         {
-                            MessageBox.Show("Student updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Course updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadStudentData();
                             ResetButtons();
                             ClearFields();
@@ -159,12 +153,12 @@ namespace Student_Information_System
                         }
                         else
                         {
-                            MessageBox.Show("Failed to update student.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Failed to update course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error updating student: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error updating course: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -172,14 +166,14 @@ namespace Student_Information_System
 
         private void deleteStudentBtn_Click(object sender, EventArgs e)
         {
-            if (selectedStudentId == -1)
+            if (selectedId == -1)
             {
-                MessageBox.Show("Please select a student to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a course to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             DialogResult result = MessageBox.Show(
-                "Are you sure you want to delete this student? This action cannot be undone.",
+                "Are you sure you want to delete this course? This action cannot be undone.",
                 "Confirm Delete",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -188,23 +182,23 @@ namespace Student_Information_System
             {
                 try
                 {
-                    int deleteResult = Database.DeleteStudent(selectedStudentId);
+                    int deleteResult = Database.DeleteCourse(selectedId);
                     if (deleteResult > 0)
                     {
-                        MessageBox.Show("Student deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Course deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadStudentData();
                         ClearFields();
-                        selectedStudentId = -1;
+                        selectedId = -1;
                         SetActionState(false);
                     }
                     else
                     {
-                        MessageBox.Show("Failed to delete student.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Failed to delete course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error deleting student: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error deleting course: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -226,13 +220,11 @@ namespace Student_Information_System
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                selectedStudentId = Convert.ToInt32(selectedRow.Cells["id"].Value);
+                selectedId = Convert.ToInt32(selectedRow.Cells["id"].Value);
 
-                studentCodeTxt.Text = selectedRow.Cells["studentCode"].Value.ToString();
-                firstNameTxt.Text = selectedRow.Cells["firstName"].Value.ToString();
-                middleNameTxt.Text = selectedRow.Cells["middleName"].Value?.ToString() ?? "";
-                lastNameTxt.Text = selectedRow.Cells["lastName"].Value.ToString();
-                phoneTxt.Text = selectedRow.Cells["phone"].Value?.ToString() ?? "";
+                courseCodeTxt.Text = selectedRow.Cells["courseCode"].Value.ToString();
+                courseNameTxt.Text = selectedRow.Cells["courseName"].Value.ToString();
+                unitsTxt.Text = selectedRow.Cells["units"].Value.ToString();
             }
         }
 
@@ -250,17 +242,11 @@ namespace Student_Information_System
                     DataTable filteredData = originalData.Clone();
                     foreach (DataRow row in originalData.Rows)
                     {
-                        string studentCode = row["studentCode"].ToString().ToLower();
-                        string firstName = row["firstName"].ToString().ToLower();
-                        string middleName = row["middleName"].ToString().ToLower();
-                        string lastName = row["lastName"].ToString().ToLower();
-                        string fullName = $"{firstName} {middleName} {lastName}".ToLower();
+                        string courseCode = row["courseCode"].ToString().ToLower();
+                        string courseName = row["courseName"].ToString().ToLower();
 
-                        if (studentCode.Contains(searchText) ||
-                            firstName.Contains(searchText) ||
-                            middleName.Contains(searchText) ||
-                            lastName.Contains(searchText) ||
-                            fullName.Contains(searchText))
+                        if (courseCode.Contains(searchText) ||
+                            courseName.Contains(searchText))
                         {
                             filteredData.ImportRow(row);
                         }
@@ -272,31 +258,24 @@ namespace Student_Information_System
 
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(studentCodeTxt.Text))
+            if (string.IsNullOrWhiteSpace(courseCodeTxt.Text))
             {
-                MessageBox.Show("Student Code is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                studentCodeTxt.Focus();
+                MessageBox.Show("Course Code is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                courseCodeTxt.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(firstNameTxt.Text))
+            if (string.IsNullOrWhiteSpace(courseNameTxt.Text))
             {
-                MessageBox.Show("First Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                firstNameTxt.Focus();
+                MessageBox.Show("Course Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                courseNameTxt.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(lastNameTxt.Text))
+            if (string.IsNullOrWhiteSpace(unitsTxt.Text))
             {
                 MessageBox.Show("Last Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lastNameTxt.Focus();
-                return false;
-            }
-
-            if (!int.TryParse(studentCodeTxt.Text, out _))
-            {
-                MessageBox.Show("Student Code must be a valid number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                studentCodeTxt.Focus();
+                unitsTxt.Focus();
                 return false;
             }
 
@@ -305,11 +284,9 @@ namespace Student_Information_System
 
         private void ClearFields()
         {
-            studentCodeTxt.Clear();
-            firstNameTxt.Clear();
-            middleNameTxt.Clear();
-            lastNameTxt.Clear();
-            phoneTxt.Clear();
+            courseCodeTxt.Clear();
+            courseNameTxt.Clear();
+            unitsTxt.Clear();
         }
 
         private void ResetButtons()
@@ -324,7 +301,7 @@ namespace Student_Information_System
             deleteStudentBtn.Enabled = true;
 
             addStudentBtn.BackColor = Color.LightGreen;
-            editStudentBtn.BackColor = Color.Blue;
+            editStudentBtn.BackColor = Color.PowderBlue;
             deleteStudentBtn.BackColor = Color.LightCoral;
         }
     }
