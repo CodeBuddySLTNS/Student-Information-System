@@ -195,7 +195,7 @@ namespace Student_Information_System
             });
         }
 
-        public static int DeleteSchoolYear(string id)
+        public static int DeleteSchoolYear(int id)
         {
             return ExecuteNonQuery("DELETE FROM schoolYears WHERE id = @id", new MySqlParameter[]
             {

@@ -8,6 +8,7 @@ namespace Student_Information_System
     {
         studentsForm studentForm = new studentsForm();
         coursesForm coursesForm = new coursesForm();
+        schoolYearsForm schoolYearsForm = new schoolYearsForm();
         public MainForm()
         {
             InitializeComponent();
@@ -58,6 +59,11 @@ namespace Student_Information_System
         private void couToolStripMenuItem_Click(object sender, EventArgs e)
         {
             coursesForm.ShowDialog();
+        }
+
+        private void schoolYearsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            schoolYearsForm.ShowDialog();
         }
     }
 }

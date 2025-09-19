@@ -18,7 +18,8 @@ phone INT
 CREATE TABLE courses (
 id INT PRIMARY KEY AUTO_INCREMENT,
 courseCode VARCHAR(15) NOT NULL,
-courseName VARCHAR(255) NOT NULL
+courseName VARCHAR(255) NOT NULL,
+units INT NOT NULL
 );
 
 

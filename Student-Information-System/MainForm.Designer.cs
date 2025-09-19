@@ -22,6 +22,7 @@ namespace Student_Information_System
             components = new System.ComponentModel.Container();
             menuStrip = new MenuStrip();
             studentsMenuItem = new ToolStripMenuItem();
+            couToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             statusLabel = new ToolStripStatusLabel();
             clockLabel = new ToolStripStatusLabel();
@@ -32,7 +33,7 @@ namespace Student_Information_System
             lblDbStatus = new Label();
             uiTimer = new Timer(components);
             pictureBox1 = new PictureBox();
-            couToolStripMenuItem = new ToolStripMenuItem();
+            schoolYearsToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             headerPanel.SuspendLayout();
@@ -41,7 +42,7 @@ namespace Student_Information_System
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { studentsMenuItem, couToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { studentsMenuItem, couToolStripMenuItem, schoolYearsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(900, 24);
@@ -53,6 +54,13 @@ namespace Student_Information_System
             studentsMenuItem.Size = new Size(65, 20);
             studentsMenuItem.Text = "Students";
             studentsMenuItem.Click += StudentsMenuItem_Click;
+            // 
+            // couToolStripMenuItem
+            // 
+            couToolStripMenuItem.Name = "couToolStripMenuItem";
+            couToolStripMenuItem.Size = new Size(61, 20);
+            couToolStripMenuItem.Text = "Courses";
+            couToolStripMenuItem.Click += couToolStripMenuItem_Click;
             // 
             // statusStrip
             // 
@@ -142,12 +150,12 @@ namespace Student_Information_System
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
-            // couToolStripMenuItem
+            // schoolYearsToolStripMenuItem
             // 
-            couToolStripMenuItem.Name = "couToolStripMenuItem";
-            couToolStripMenuItem.Size = new Size(61, 20);
-            couToolStripMenuItem.Text = "Courses";
-            couToolStripMenuItem.Click += couToolStripMenuItem_Click;
+            schoolYearsToolStripMenuItem.Name = "schoolYearsToolStripMenuItem";
+            schoolYearsToolStripMenuItem.Size = new Size(85, 20);
+            schoolYearsToolStripMenuItem.Text = "School Years";
+            schoolYearsToolStripMenuItem.Click += schoolYearsToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -176,6 +184,7 @@ namespace Student_Information_System
         private System.ComponentModel.IContainer components;
         private PictureBox pictureBox1;
         private ToolStripMenuItem couToolStripMenuItem;
+        private ToolStripMenuItem schoolYearsToolStripMenuItem;
     }
 }
 
