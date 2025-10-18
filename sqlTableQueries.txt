@@ -1,10 +1,18 @@
+CREATE TABLE departments (
+id INT PRIMARY KEY AUTO_INCREMENT,
+departmentName VARCHAR(255) NOT NULL,
+acronym VARCHAR(15) NOT NULL
+);
+
 CREATE TABLE students (
 id INT PRIMARY KEY AUTO_INCREMENT,
+departmentId INT NOT NULL,
 studentCode INT,
 firstName VARCHAR(50) NOT NULL,
 middleName VARCHAR(50),
 lastName VARCHAR(50) NOT NULL,
-phone INT
+phone INT,
+FOREIGN KEY (departmentId) REFERENCES departments(id) ON DELETE CASCADE
 );
 
 CREATE TABLE faculty (
@@ -40,16 +48,19 @@ name VARCHAR(255) NOT NULL
 
 CREATE TABLE classes (
 id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
 facultyId INT NOT NULL,
 FOREIGN KEY (facultyId) REFERENCES faculty(id) ON DELETE CASCADE
 );
 
 CREATE TABLE enrollment (
 id INT PRIMARY KEY AUTO_INCREMENT,
+studentId INT NOT NULL,
 courseId INT NOT NULL,
 yearLevelId INT NOT NULL,
 semesterId INT NOT NULL,
 schoolYearId INT NOT NULL,
+FOREIGN KEY (studentId) REFERENCES students(id) ON DELETE CASCADE,
 FOREIGN KEY (courseId) REFERENCES courses(id) ON DELETE CASCADE,
 FOREIGN KEY (yearLevelId) REFERENCES yearLevels(id) ON DELETE CASCADE,
 FOREIGN KEY (semesterId) REFERENCES semesters(id) ON DELETE CASCADE,
@@ -60,7 +71,8 @@ CREATE TABLE enrollmentDetails (
 id INT PRIMARY KEY AUTO_INCREMENT,
 enrollmentId INT NOT NULL,
 classId INT NOT NULL,
-FOREIGN KEY (classId) REFERENCES class(id) ON DELETE CASCADE
+FOREIGN KEY (classId) REFERENCES classes(id) ON DELETE CASCADE,
+FOREIGN KEY (enrollmentId) REFERENCES enrollment(id) ON DELETE CASCADE
 );
 
 
@@ -72,3 +84,8 @@ password_hash VARCHAR(64) NOT NULL
 
 INSERT INTO users (username, password_hash) VALUES ('admin', MD5('admin'));
 
+INSERT INTO departments (departmentName, acronym) VALUES
+	("Bachelor of Science in Computer Science", "BSCS"),
+	("Bachelor of Science in Information Technology", "BSIT"),
+	("Bachelor of Science in Social Work", "BSSW"),
+	("Bachelor of Early Childhood Education", "BECED");

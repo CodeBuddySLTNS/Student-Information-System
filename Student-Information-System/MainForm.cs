@@ -9,6 +9,9 @@ namespace Student_Information_System
         studentsForm studentForm = new studentsForm();
         coursesForm coursesForm = new coursesForm();
         schoolYearsForm schoolYearsForm = new schoolYearsForm();
+        facultiesForm facultiesForm = new facultiesForm();
+        enrollmentForm enrollmentForm = new enrollmentForm();
+        classesForm classesForm = new classesForm();
         public MainForm()
         {
             InitializeComponent();
@@ -65,6 +68,21 @@ namespace Student_Information_System
         {
             schoolYearsForm.ShowDialog();
         }
+
+        private void facultiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            facultiesForm.ShowDialog();
+        }
+
+        private void btnOpenStudents_Click(object sender, EventArgs e)
+        {
+            enrollmentForm.ShowDialog();
+        }
+
+        private void classesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            classesForm.ShowDialog();
+        }
     }
 }
-
+ 

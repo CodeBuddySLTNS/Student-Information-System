@@ -23,6 +23,8 @@ namespace Student_Information_System
             menuStrip = new MenuStrip();
             studentsMenuItem = new ToolStripMenuItem();
             couToolStripMenuItem = new ToolStripMenuItem();
+            schoolYearsToolStripMenuItem = new ToolStripMenuItem();
+            facultiesToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             statusLabel = new ToolStripStatusLabel();
             clockLabel = new ToolStripStatusLabel();
@@ -33,7 +35,7 @@ namespace Student_Information_System
             lblDbStatus = new Label();
             uiTimer = new Timer(components);
             pictureBox1 = new PictureBox();
-            schoolYearsToolStripMenuItem = new ToolStripMenuItem();
+            classesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             headerPanel.SuspendLayout();
@@ -42,7 +44,7 @@ namespace Student_Information_System
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { studentsMenuItem, couToolStripMenuItem, schoolYearsToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { studentsMenuItem, couToolStripMenuItem, schoolYearsToolStripMenuItem, facultiesToolStripMenuItem, classesToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(900, 24);
@@ -61,6 +63,20 @@ namespace Student_Information_System
             couToolStripMenuItem.Size = new Size(61, 20);
             couToolStripMenuItem.Text = "Courses";
             couToolStripMenuItem.Click += couToolStripMenuItem_Click;
+            // 
+            // schoolYearsToolStripMenuItem
+            // 
+            schoolYearsToolStripMenuItem.Name = "schoolYearsToolStripMenuItem";
+            schoolYearsToolStripMenuItem.Size = new Size(85, 20);
+            schoolYearsToolStripMenuItem.Text = "School Years";
+            schoolYearsToolStripMenuItem.Click += schoolYearsToolStripMenuItem_Click;
+            // 
+            // facultiesToolStripMenuItem
+            // 
+            facultiesToolStripMenuItem.Name = "facultiesToolStripMenuItem";
+            facultiesToolStripMenuItem.Size = new Size(65, 20);
+            facultiesToolStripMenuItem.Text = "Faculties";
+            facultiesToolStripMenuItem.Click += facultiesToolStripMenuItem_Click;
             // 
             // statusStrip
             // 
@@ -110,8 +126,8 @@ namespace Student_Information_System
             btnOpenStudents.Name = "btnOpenStudents";
             btnOpenStudents.Size = new Size(180, 40);
             btnOpenStudents.TabIndex = 1;
-            btnOpenStudents.Text = "Manage Students";
-            btnOpenStudents.Click += StudentsMenuItem_Click;
+            btnOpenStudents.Text = "Enrolled Students";
+            btnOpenStudents.Click += btnOpenStudents_Click;
             // 
             // lblStudentsCount
             // 
@@ -150,12 +166,12 @@ namespace Student_Information_System
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
-            // schoolYearsToolStripMenuItem
+            // classesToolStripMenuItem
             // 
-            schoolYearsToolStripMenuItem.Name = "schoolYearsToolStripMenuItem";
-            schoolYearsToolStripMenuItem.Size = new Size(85, 20);
-            schoolYearsToolStripMenuItem.Text = "School Years";
-            schoolYearsToolStripMenuItem.Click += schoolYearsToolStripMenuItem_Click;
+            classesToolStripMenuItem.Name = "classesToolStripMenuItem";
+            classesToolStripMenuItem.Size = new Size(57, 20);
+            classesToolStripMenuItem.Text = "Classes";
+            classesToolStripMenuItem.Click += classesToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -185,6 +201,8 @@ namespace Student_Information_System
         private PictureBox pictureBox1;
         private ToolStripMenuItem couToolStripMenuItem;
         private ToolStripMenuItem schoolYearsToolStripMenuItem;
+        private ToolStripMenuItem facultiesToolStripMenuItem;
+        private ToolStripMenuItem classesToolStripMenuItem;
     }
 }
 

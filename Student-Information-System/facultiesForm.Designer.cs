@@ -1,6 +1,6 @@
 ﻿namespace Student_Information_System
 {
-    partial class studentsForm
+    partial class facultiesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,12 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            departmentCmb = new ComboBox();
-            departmentLabel = new Label();
-            phoneTxt = new TextBox();
-            phoneLabel = new Label();
-            studentCodeTxt = new TextBox();
-            studentCodeLabel = new Label();
-            lastNameTxt = new TextBox();
-            middleNameTxt = new TextBox();
-            lastNameLabel = new Label();
-            firstNameTxt = new TextBox();
-            middleNameLabel = new Label();
-            firstNameLabel = new Label();
+            unitsTxt = new TextBox();
+            unitsLabel = new Label();
+            courseCodeTxt = new TextBox();
+            courseCodeLabel = new Label();
+            courseNameTxt = new TextBox();
+            courseNameLabel = new Label();
             groupBox2 = new GroupBox();
             clearBtn = new Button();
             cancelBtn = new Button();
@@ -61,125 +55,68 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(departmentCmb);
-            groupBox1.Controls.Add(departmentLabel);
-            groupBox1.Controls.Add(phoneTxt);
-            groupBox1.Controls.Add(phoneLabel);
-            groupBox1.Controls.Add(studentCodeTxt);
-            groupBox1.Controls.Add(studentCodeLabel);
-            groupBox1.Controls.Add(lastNameTxt);
-            groupBox1.Controls.Add(middleNameTxt);
-            groupBox1.Controls.Add(lastNameLabel);
-            groupBox1.Controls.Add(firstNameTxt);
-            groupBox1.Controls.Add(middleNameLabel);
-            groupBox1.Controls.Add(firstNameLabel);
+            groupBox1.Controls.Add(unitsTxt);
+            groupBox1.Controls.Add(unitsLabel);
+            groupBox1.Controls.Add(courseCodeTxt);
+            groupBox1.Controls.Add(courseCodeLabel);
+            groupBox1.Controls.Add(courseNameTxt);
+            groupBox1.Controls.Add(courseNameLabel);
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(495, 286);
+            groupBox1.Size = new Size(495, 192);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
-            // departmentCmb
+            // unitsTxt
             // 
-            departmentCmb.FormattingEnabled = true;
-            departmentCmb.Location = new Point(7, 212);
-            departmentCmb.Name = "departmentCmb";
-            departmentCmb.Size = new Size(482, 23);
-            departmentCmb.TabIndex = 9;
+            unitsTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            unitsTxt.Location = new Point(7, 133);
+            unitsTxt.Name = "unitsTxt";
+            unitsTxt.Size = new Size(483, 23);
+            unitsTxt.TabIndex = 5;
             // 
-            // departmentLabel
+            // unitsLabel
             // 
-            departmentLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            departmentLabel.Location = new Point(6, 195);
-            departmentLabel.Name = "departmentLabel";
-            departmentLabel.Size = new Size(483, 23);
-            departmentLabel.TabIndex = 8;
-            departmentLabel.Text = "Department";
+            unitsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            unitsLabel.Location = new Point(4, 112);
+            unitsLabel.Name = "unitsLabel";
+            unitsLabel.Size = new Size(483, 23);
+            unitsLabel.TabIndex = 4;
+            unitsLabel.Text = "Last Name";
             // 
-            // phoneTxt
+            // courseCodeTxt
             // 
-            phoneTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            phoneTxt.Location = new Point(7, 257);
-            phoneTxt.Name = "phoneTxt";
-            phoneTxt.Size = new Size(482, 23);
-            phoneTxt.TabIndex = 7;
+            courseCodeTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            courseCodeTxt.Location = new Point(6, 32);
+            courseCodeTxt.Name = "courseCodeTxt";
+            courseCodeTxt.Size = new Size(483, 23);
+            courseCodeTxt.TabIndex = 1;
             // 
-            // phoneLabel
+            // courseCodeLabel
             // 
-            phoneLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            phoneLabel.Location = new Point(6, 238);
-            phoneLabel.Name = "phoneLabel";
-            phoneLabel.Size = new Size(483, 23);
-            phoneLabel.TabIndex = 0;
-            phoneLabel.Text = "Phone";
+            courseCodeLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            courseCodeLabel.Location = new Point(3, 14);
+            courseCodeLabel.Name = "courseCodeLabel";
+            courseCodeLabel.Size = new Size(483, 23);
+            courseCodeLabel.TabIndex = 0;
+            courseCodeLabel.Text = "First Name";
             // 
-            // studentCodeTxt
+            // courseNameTxt
             // 
-            studentCodeTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            studentCodeTxt.Location = new Point(6, 29);
-            studentCodeTxt.Name = "studentCodeTxt";
-            studentCodeTxt.Size = new Size(483, 23);
-            studentCodeTxt.TabIndex = 1;
+            courseNameTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            courseNameTxt.Location = new Point(6, 84);
+            courseNameTxt.Name = "courseNameTxt";
+            courseNameTxt.Size = new Size(483, 23);
+            courseNameTxt.TabIndex = 3;
             // 
-            // studentCodeLabel
+            // courseNameLabel
             // 
-            studentCodeLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            studentCodeLabel.Location = new Point(3, 12);
-            studentCodeLabel.Name = "studentCodeLabel";
-            studentCodeLabel.Size = new Size(483, 23);
-            studentCodeLabel.TabIndex = 0;
-            studentCodeLabel.Text = "Student Code";
-            // 
-            // lastNameTxt
-            // 
-            lastNameTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lastNameTxt.Location = new Point(6, 168);
-            lastNameTxt.Name = "lastNameTxt";
-            lastNameTxt.Size = new Size(483, 23);
-            lastNameTxt.TabIndex = 5;
-            // 
-            // middleNameTxt
-            // 
-            middleNameTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            middleNameTxt.Location = new Point(6, 124);
-            middleNameTxt.Name = "middleNameTxt";
-            middleNameTxt.Size = new Size(483, 23);
-            middleNameTxt.TabIndex = 4;
-            // 
-            // lastNameLabel
-            // 
-            lastNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lastNameLabel.Location = new Point(6, 151);
-            lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new Size(483, 23);
-            lastNameLabel.TabIndex = 0;
-            lastNameLabel.Text = "Last Name";
-            // 
-            // firstNameTxt
-            // 
-            firstNameTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            firstNameTxt.Location = new Point(6, 78);
-            firstNameTxt.Name = "firstNameTxt";
-            firstNameTxt.Size = new Size(483, 23);
-            firstNameTxt.TabIndex = 3;
-            // 
-            // middleNameLabel
-            // 
-            middleNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            middleNameLabel.Location = new Point(6, 104);
-            middleNameLabel.Name = "middleNameLabel";
-            middleNameLabel.Size = new Size(483, 23);
-            middleNameLabel.TabIndex = 0;
-            middleNameLabel.Text = "Middle Name";
-            // 
-            // firstNameLabel
-            // 
-            firstNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            firstNameLabel.Location = new Point(3, 58);
-            firstNameLabel.Name = "firstNameLabel";
-            firstNameLabel.Size = new Size(483, 23);
-            firstNameLabel.TabIndex = 0;
-            firstNameLabel.Text = "First Name";
+            courseNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            courseNameLabel.Location = new Point(3, 61);
+            courseNameLabel.Name = "courseNameLabel";
+            courseNameLabel.Size = new Size(483, 23);
+            courseNameLabel.TabIndex = 0;
+            courseNameLabel.Text = "Middle Name";
             // 
             // groupBox2
             // 
@@ -191,7 +128,7 @@
             groupBox2.Controls.Add(addStudentBtn);
             groupBox2.Location = new Point(529, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(302, 270);
+            groupBox2.Size = new Size(302, 192);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             // 
@@ -268,16 +205,16 @@
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(834, 292);
+            tableLayoutPanel1.Size = new Size(834, 198);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(40, 376);
+            dataGridView1.Location = new Point(40, 282);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(834, 193);
+            dataGridView1.Size = new Size(834, 287);
             dataGridView1.TabIndex = 5;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
@@ -286,7 +223,7 @@
             searchGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             searchGroupBox.Controls.Add(searchTxt);
             searchGroupBox.Controls.Add(searchLabel);
-            searchGroupBox.Location = new Point(40, 310);
+            searchGroupBox.Location = new Point(40, 216);
             searchGroupBox.Name = "searchGroupBox";
             searchGroupBox.Size = new Size(834, 60);
             searchGroupBox.TabIndex = 4;
@@ -308,9 +245,9 @@
             searchLabel.Name = "searchLabel";
             searchLabel.Size = new Size(816, 23);
             searchLabel.TabIndex = 0;
-            searchLabel.Text = "Search by Student Code or Name:";
+            searchLabel.Text = "Search by Student Name:";
             // 
-            // studentsForm
+            // facultiesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -319,8 +256,8 @@
             Controls.Add(searchGroupBox);
             Controls.Add(tableLayoutPanel1);
             MinimumSize = new Size(756, 588);
-            Name = "studentsForm";
-            Text = "Student Management";
+            Name = "facultiesForm";
+            Text = "Faculty Management";
             WindowState = FormWindowState.Maximized;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -337,16 +274,10 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private TableLayoutPanel tableLayoutPanel1;
-        private Label firstNameLabel;
-        private TextBox firstNameTxt;
-        private TextBox middleNameTxt;
-        private Label middleNameLabel;
-        private TextBox lastNameTxt;
-        private Label lastNameLabel;
-        private TextBox phoneTxt;
-        private Label phoneLabel;
-        private TextBox studentCodeTxt;
-        private Label studentCodeLabel;
+        private Label courseNameLabel;
+        private TextBox courseNameTxt;
+        private TextBox courseCodeTxt;
+        private Label courseCodeLabel;
         private Button clearBtn;
         private Button deleteStudentBtn;
         private Button editStudentBtn;
@@ -356,7 +287,7 @@
         private Label searchLabel;
         private DataGridView dataGridView1;
         private Button cancelBtn;
-        private ComboBox departmentCmb;
-        private Label departmentLabel;
+        private TextBox unitsTxt;
+        private Label unitsLabel;
     }
 }
